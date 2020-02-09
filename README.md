@@ -18,12 +18,18 @@ Spring Cloud Config Server can be used to externalize configuration from your ap
 ## 2.2 - Creating a Config Server
 
 1. Create a new Spring Boot project
-2. With the config-server starter project
-3. Specify your Git repo
+2. Include dependency on `spring-cloud-config-server`
+3. Specify the following properties / environment variables:
+   - `spring.cloud.config.server.git.uri` (the backing Git repository)
+   - `server.port`
 
-Typical use:
-* different profile for each data center
-* different instance of Config Server for each branch
+### Usage
+
+Properties for microservice `<app1>` are typically stored in `<app1>.properties` in the root of the repository.
+
+The Config Server serves these properties under URL `https://<host>:<port>/my-application/default`.
+
+For instance: http://localhost:9000/guestservices/default
 
 ## 2.4 - Consuming 
 Consuming Config:
