@@ -17,5 +17,7 @@
 
     <modules>
         <module>guest-services</module>
+        <module>room-services</module>
+        <module>reservation-services</module>
     </modules>
 </project>
