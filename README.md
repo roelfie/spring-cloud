@@ -41,9 +41,12 @@ So the properties for the guest service for the different environments can be fo
 See the [spring-cloud-config documentation](https://cloud.spring.io/spring-cloud-config/reference/html/#_locating_remote_configuration_resources)
 for more information.
 
-## 2.4 - Consuming 
-Consuming Config:
-* Spring Cloud Config client starter project
-* Point to the Config Server in a Bootstrap file
-* Downloads Config at application startup
-* Leverages Spring Lifecycle (Config loaded before bean post-processing) 
+## 2.4 - Creating a Config Server client 
+
+1. In your existing Spring Boot application, include a dependency on `spring-cloud-config-client`
+2. Add a `src/main/resources/bootstrap.properties` with properties:
+   - `spring.application.name=<appname>` (should match the file name in the git repo)
+   - `spring.cloud.config.uri=http://localhost:9000` (the Config Server uri)
+
+Your application will now download the configuration at application startup. 
+It leverages the Spring Lifecycle (the config will be loaded before bean post-processing). 
