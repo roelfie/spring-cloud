@@ -25,11 +25,21 @@ Spring Cloud Config Server can be used to externalize configuration from your ap
 
 ### Usage
 
-Properties for microservice `<app1>` are typically stored in `<app1>.properties` in the root of the repository.
+Suppose we have a microservice called appname. A typical setup in the Config Server would be:
+* properties are defined in `appname.properties` in the root of the repository
+* the properties are served under URL `https://<host>:<port>/appname/default`
 
-The Config Server serves these properties under URL `https://<host>:<port>/my-application/default`.
+More generally, Config Server serves property sources from `/{application}/{profile}/{label}` where
+* {profile} is the active Spring profile (default `${spring.profiles.active}`)
+* {label} can be a Git label, branch name or commit id (usually a branch name)
 
-For instance: http://localhost:9000/guestservices/default
+So the properties for the guest service for the different environments can be found here:
+* http://localhost:9000/guestservices/default
+* http://localhost:9000/guestservices/default/master
+* http://localhost:9000/guestservices/default/dev
+ 
+See the [spring-cloud-config documentation](https://cloud.spring.io/spring-cloud-config/reference/html/#_locating_remote_configuration_resources)
+for more information.
 
 ## 2.4 - Consuming 
 Consuming Config:
