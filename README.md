@@ -70,8 +70,15 @@ To create a Eureka Server:
 * Optional configuration:
 ```properties
 eureka.client.register-with-eureka=false
-# And we don't want pull anything from the Eureka server.
 eureka.client.fetch-registry=false
 ```
 
 #### Eureka Client
+To add a Eureka Client to your Spring Boot project:
+* Add the `spring-cloud-starter-netflix-eureka-client` dependency
+* Annotate the @SpringBootApplication with `@EnableEurekaClient`
+* By default it will look for a Eureka Server on localhost:8761 (if it's somewhere else, you'll have to specify that in
+a property)
+
+#### Using Service Discovery
+To actually use the Eureka Client, ...
