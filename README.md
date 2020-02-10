@@ -49,4 +49,29 @@ for more information.
    - `spring.cloud.config.uri=http://localhost:9000` (the Config Server uri)
 
 Your application will now download the configuration at application startup. 
-It leverages the Spring Lifecycle (the config will be loaded before bean post-processing). 
+It leverages the Spring Lifecycle (the config will be loaded before bean post-processing).
+
+# 3 - Service Discovery
+
+## Eureka
+
+Eureka is the service discovery platform created by Netflix. 
+
+Spring Boot offers an out of the box Server and Client for Eureka (very similar to Config Server/Client). 
+
+Spring Cloud's Eureka Client even leverages the same property `spring.application.name` (Config Client uses 
+the property to tell Config Server: give me my configuration; Eureka Client uses the property 
+to register itself with the Eureka Server).
+
+#### Eureka Server
+To create a Eureka Server:
+* Create a Spring Boot application with `spring-cloud-starter-netflix-eureka-server`
+* Annotate the @SpringBootApplication with `@EnableEurekaServer`
+* Optional configuration:
+```properties
+eureka.client.register-with-eureka=false
+# And we don't want pull anything from the Eureka server.
+eureka.client.fetch-registry=false
+```
+
+#### Eureka Client
